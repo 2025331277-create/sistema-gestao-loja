@@ -1,0 +1,35 @@
+// modelagem feita no dbdiagram.io
+
+Table loja {
+  id_loja int [pk, increment]
+  nome varchar (45) [not null]
+  cnpj varchar(14)
+  telefone varchar (20)
+  email varchar (100)
+  data_criacao timestamp 
+}
+Table usuarios {
+  id_usuario int [pk, increment]
+  id_loja int [not null]
+    cargo varchar (50)
+}
+Table estoque {
+  id_estoque int [pk, increment]
+  id_loja int [not null]
+}
+
+Table vendas {
+  id_venda int [pk, increment]
+  id_loja int [not null]
+}
+
+Table financeiro {
+  id_financeiro int [pk, increment]
+  id_loja int [not null]
+}
+
+Ref: estoque.id_loja > loja.id_loja
+Ref: vendas.id_loja > loja.id_loja
+Ref: financeiro.id_loja > loja.id_loja
+Ref: usuarios.id_loja > loja.id_loja
+
