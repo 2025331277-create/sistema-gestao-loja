@@ -2,34 +2,40 @@
 
 Table loja {
   id_loja int [pk, increment]
-  nome varchar (45) [not null]
-  cnpj varchar(14)
-  telefone varchar (20)
-  email varchar (100)
-  data_criacao timestamp 
+  nome varchar(45) [not null]
+  cnpj varchar(14) [unique]
+  telefone varchar(20)
+  email varchar(100
+  data_criacao timestamp
 }
-Table usuarios {
-  id_usuario int [pk, increment]
-  id_loja int [not null]
-    cargo varchar (50)
-}
+
 Table estoque {
   id_estoque int [pk, increment]
   id_loja int [not null]
 }
 
-Table vendas {
-  id_venda int [pk, increment]
-  id_loja int [not null]
+Table categorias {
+  id_categorias int [pk, increment]
+  id_estoque int [not null]
+  nome varchar(30)
+  descricao text
 }
 
-Table financeiro {
-  id_financeiro int [pk, increment]
-  id_loja int [not null]
+Table produtos {
+  id_produto int [pk, increment]
+  id_categorias int [not null]
+  codigo_p varchar(20) [unique, not null]
+  descricao text
+  nome varchar(100) [not null]
+  preco_custo decimal(10,2) [not null]
+  preco_venda decimal(10,2) [not null]
+  qtd int [not null, default: 0]
+}
+
+Table usuarios {
+  id_usuarios varchar 
 }
 
 Ref: estoque.id_loja > loja.id_loja
-Ref: vendas.id_loja > loja.id_loja
-Ref: financeiro.id_loja > loja.id_loja
-Ref: usuarios.id_loja > loja.id_loja
-
+Ref: categorias.id_estoque > estoque.id_estoque
+Ref: produtos.id_categorias > categorias.id_categorias
