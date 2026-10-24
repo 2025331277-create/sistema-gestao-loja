@@ -1,107 +1,122 @@
 // modelagem feita no dbdiagram.io
 
+
 Table loja {
-  id_loja int [pk, increment]
-  nome varchar(45) [not null]
-  cnpj varchar(14) [unique]
-  telefone varchar(20)
-  email varchar(100)
-  endereco text
-  data_criacao timestamp 
+ id_loja int [pk, increment]
+ nome varchar(45) [not null]
+ cnpj varchar(14) [unique]
+ telefone varchar(20)
+ email varchar(100)
+ endereco text
+ data_criacao timestamp
 }
+
 
 //----------------------------------------------------------------------------------------------------
 Table estoque {
-  id_estoque int [pk, increment]
-  id_loja int [not null]
+ id_estoque int [pk, increment]
+ id_usuarios int [not null]
 }
+
 
 Table categorias {
-  id_categorias int [pk, increment]
-  id_estoque int [not null]
-  nome varchar(30) [not null]
-  descricao text
+ id_categorias int [pk, increment]
+ id_estoque int [not null]
+ nome varchar(30) [not null]
+ descricao text
 }
+
 
 Table produtos {
-  id_produto int [pk, increment]
-  id_categorias int [not null]
-  codigo_p varchar(20) [unique, not null]
-  descricao text
-  nome varchar(100) [not null]
-  preco_custo decimal(10,2) [not null]   // valor unitario
-  preco_venda decimal(10,2) [not null]  // valor unitario
-  qtd int [not null, default: 0]
-  estoque_min int [not null, default: 0]
-  data_criacao timestamp [not null] 
+ id_produto int [pk, increment]
+ id_categorias int [not null]
+ codigo_p varchar(20) [unique, not null]
+ descricao text
+ nome varchar(100) [not null]
+ preco_custo decimal(10,2) [not null]   // valor unitario
+ preco_venda decimal(10,2) [not null]  // valor unitario
+ qtd int [not null, default: 0]
+ estoque_min int [not null, default: 0]
+ data_criacao timestamp [not null]
 }
+
 
 Table produto_tamanhos {
-  id_tamanho int [pk, increment]
-  id_produto int [not null]
-  tamanho varchar(10)
-  quantidade int [not null]
+ id_tamanho int [pk, increment]
+ id_produto int [not null]
+ tamanho varchar(10)
+ quantidade int [not null]
 }
+
 
 //----------------------------------------------------------------------------------------------------
-Table usuarios {
-  id_usuarios int [pk, increment]
-  id_loja int [not null]
-  cargo varchar(30) [not null]
-  senha varchar(12) [not null]
-  email varchar(100) [not null]
+Table usuarios_acesso {
+ id_usuarios int [pk, increment]
+ id_loja int [not null]
+ cargo varchar(30) [not null]
+ senha varchar(12) [not null]
+ email varchar(100) [not null]
 }
 
+
 Table clientes {
-  id_cliente int [pk, increment]
-  id_loja int [not null]
-  nome varchar(100) [not null]
-  cpf varchar(14) [unique, not null]
-  telefone varchar(20)
-  email varchar(100)
-  data_cadastro timestamp [not null]
+ id_cliente int [pk, increment]
+ id_usuarios int [not null]
+ nome varchar(100) [not null]
+ cpf varchar(14) [unique, not null]
+ telefone varchar(20)
+ email varchar(100)
+ data_cadastro timestamp [not null]
 }
+
 
 //----------------------------------------------------------------------------------------------------
 Table financeiro {
-  id_financeiro int [pk, increment]
-  id_loja int [not null]
+ id_financeiro int [pk, increment]
+ id_usuarios int [not null]
 }
 
+
 Table pagamentos {
-  id_financeiro int [not null]
-  cod_pagamento int [not null]
-  descricao text
-  contato varchar(20) [not null]
-  data_paga timestamp
-  valor decimal(10,2) [not null]
+ id_pagamentos int [pk, increment]
+ id_vendas int [not null]
+ id_cliente int [not null]
+ cod_pagamento int [not null]
+ descricao text
+ contato varchar(20) [not null]
+ data_paga timestamp
+ valor decimal(10,2) [not null]
 }
 
 Table vendas {
-  id_venda int [pk, increment]
-  id_financeiro int [not null]
-  id_cliente int
-  id_usuario int [not null]
-  valor_total decimal(10,2) [not null]
-  forma_pagamento varchar(30) [not null]
-  parcelas int
-  data_venda timestamp [not null]
+ id_venda int [pk, increment]
+ id_financeiro int [not null]
+ valor_total decimal(10,2) [not null]
+ forma_pagamento varchar(30) [not null]
+ parcelas int
+ data_venda timestamp [not null]
 }
+
 
 //----------------------------------------------------------------------------------------------------
 
-Ref: usuarios.id_loja > loja.id_loja
-Ref: clientes.id_loja > loja.id_loja
 
-Ref: estoque.id_loja > loja.id_loja
+Ref: usuarios_acesso.id_loja > loja.id_loja
+Ref: clientes.id_usuarios > usuarios_acesso.id_usuarios
+
+
+Ref: estoque.id_usuarios > usuarios_acesso.id_usuarios
 Ref: categorias.id_estoque > estoque.id_estoque
 Ref: produtos.id_categorias > categorias.id_categorias
 Ref: produto_tamanhos.id_produto > produtos.id_produto
 
-Ref: financeiro.id_loja > loja.id_loja
-Ref: vendas.id_financeiro > financeiro.id_financeiro
-Ref: vendas.id_cliente > clientes.id_cliente
-Ref: vendas.id_usuario > usuarios.id_usuarios
-Ref: pagamentos.id_financeiro > financeiro.id_financeiro
 
-// arrumar erro 
+Ref: financeiro.id_usuarios > usuarios_acesso.id_usuarios
+Ref: vendas.id_financeiro > financeiro.id_financeiro
+Ref: pagamentos.id_vendas > vendas.id_venda
+Ref: pagamentos.id_cliente > clientes.id_cliente
+//Ref: vendas.id_cliente > clientes.id_cliente
+//Ref: vendas.id_usuario > usuarios_acesso.id_usuarios
+
+
+
