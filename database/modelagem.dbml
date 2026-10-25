@@ -1,3 +1,4 @@
+
 // modelagem feita no dbdiagram.io
 
 
@@ -15,7 +16,7 @@ Table loja {
 //----------------------------------------------------------------------------------------------------
 Table estoque {
  id_estoque int [pk, increment]
- id_usuarios int [not null]
+ id_loja int [not null]
 }
 
 
@@ -61,12 +62,34 @@ Table usuarios_acesso {
 
 Table clientes {
  id_cliente int [pk, increment]
- id_usuarios int [not null]
+ id_loja int [not null]
  nome varchar(100) [not null]
  cpf varchar(14) [unique, not null]
  telefone varchar(20)
  email varchar(100)
  data_cadastro timestamp [not null]
+}
+
+
+Table fornecedores {
+ id_fornecedor int [pk, increment]
+ id_loja int [not null]
+ nome varchar(100) [not null]
+ cnpj varchar(14) [unique]
+ telefone varchar(20)
+ email varchar(100)
+ endereco text
+ data_cadastro timestamp
+}
+
+
+Table fornecedores_produtos {
+ id_fornecedor int [not null]
+ id_produto int [not null]
+
+ indexes {
+  (id_fornecedor, id_produto) [pk]
+ }
 }
 
 
@@ -80,7 +103,6 @@ Table financeiro {
 Table pagamentos {
  id_pagamentos int [pk, increment]
  id_vendas int [not null]
- id_cliente int [not null]
  cod_pagamento int [not null]
  descricao text
  contato varchar(20) [not null]
@@ -88,9 +110,11 @@ Table pagamentos {
  valor decimal(10,2) [not null]
 }
 
+
 Table vendas {
  id_venda int [pk, increment]
  id_financeiro int [not null]
+ id_cliente int [not null]
  valor_total decimal(10,2) [not null]
  forma_pagamento varchar(30) [not null]
  parcelas int
@@ -98,25 +122,37 @@ Table vendas {
 }
 
 
+Table itens_venda {
+ id_item int [pk, increment]
+ id_venda int [not null]
+ id_produto int [not null]
+ id_tamanho int 
+ quantidade int [not null]
+ preco_unitario decimal(10,2) [not null]
+}
+
+
 //----------------------------------------------------------------------------------------------------
 
-
 Ref: usuarios_acesso.id_loja > loja.id_loja
-Ref: clientes.id_usuarios > usuarios_acesso.id_usuarios
+Ref: clientes.id_loja > loja.id_loja
+Ref: fornecedores.id_loja > loja.id_loja
 
-
-Ref: estoque.id_usuarios > usuarios_acesso.id_usuarios
+Ref: estoque.id_loja > loja.id_loja
 Ref: categorias.id_estoque > estoque.id_estoque
 Ref: produtos.id_categorias > categorias.id_categorias
 Ref: produto_tamanhos.id_produto > produtos.id_produto
 
+Ref: fornecedores_produtos.id_fornecedor > fornecedores.id_fornecedor
+Ref: fornecedores_produtos.id_produto > produtos.id_produto
 
 Ref: financeiro.id_usuarios > usuarios_acesso.id_usuarios
 Ref: vendas.id_financeiro > financeiro.id_financeiro
+Ref: vendas.id_cliente > clientes.id_cliente
 Ref: pagamentos.id_vendas > vendas.id_venda
-Ref: pagamentos.id_cliente > clientes.id_cliente
-//Ref: vendas.id_cliente > clientes.id_cliente
-//Ref: vendas.id_usuario > usuarios_acesso.id_usuarios
+Ref: itens_venda.id_venda > vendas.id_venda
+Ref: itens_venda.id_produto > produtos.id_produto
+Ref: itens_venda.id_tamanho > produto_tamanhos.id_tamanho
 
 
-
+//  finalizado 
