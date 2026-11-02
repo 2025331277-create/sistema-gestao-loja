@@ -13,7 +13,6 @@ DROP TABLE IF EXISTS estoque;
 DROP TABLE IF EXISTS loja;
 
 DROP DATABASE IF EXISTS loja;
-
 CREATE DATABASE loja;
 
 \c loja;
@@ -81,19 +80,33 @@ CREATE TABLE clientes (
     data_cadastro TIMESTAMP NOT NULL
 );
 
-
+CREATE TABLE fornecedores (
+    id_fornecedor SERIAL PRIMARY KEY,
+    id_loja INTEGER REFERENCES loja(id_loja),
+    nome VARCHAR(100) NOT NULL,
+    cnpj VARCHAR(14) UNIQUE,
+    telefone VARCHAR(20),
+    email VARCHAR(100),
+    endereco TEXT,
+    data_cadastro TIMESTAMP
+);
+    
 -----------------------------------------------------------------------------------------------------
+
+CREATE TABLE fornecedores_produtos (
+  id_fornecedor INTEGER REFERENCES fornecedores(id_fornecedor),
+  id_produto INTEGER REFERENCES produtos(id_produto),
+  PRIMARY KEY  (id_fornecedor, id_produto)
+);
 
 CREATE TABLE financeiro (
     id_financeiro SERIAL PRIMARY KEY,
     id_usuarios INTEGER REFERENCES usuarios_acesso(id_usuarios)
 );
 
-
-
 CREATE TABLE vendas (
-    id_venda SERIAL PRIMARY KEY,
-    id_financeiro INTEGER REFERENCES financeiro(id_financeiro),
+   id_venda SERIAL PRIMARY KEY,
+   id_financeiro INTEGER REFERENCES financeiro(id_financeiro),
    id_cliente INTEGER REFERENCES clientes(id_cliente),
    valor_total DECIMAL (10,2) NOT NULL,
    forma_pagamento VARCHAR(30),
@@ -101,23 +114,15 @@ CREATE TABLE vendas (
    data_venda TIMESTAMP NOT NULL 
 );
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+CREATE TABLE pagamentos (
+  id_pagamentos SERIAL PRIMARY KEY,
+  id_vendas INTEGER REFERENCES vendas(id_loja),
+  cod_pagamento INTEGER NOT NULL,
+  descricao TEXT,
+  contato VARCHAR(10,2) NOT NULL,
+  data_paga TIMESTAMP,
+  valor DECIMAL(10,2) NOT NULL
+);
 
 CREATE TABLE itens_venda (
    id_item SERIAL PRIMARY KEY,
@@ -127,8 +132,3 @@ CREATE TABLE itens_venda (
    quantidade int NOT NULL,
    preco_unitario DECIMAL(10,00) NOT NULL ,
 );
-
-
-
-
-
