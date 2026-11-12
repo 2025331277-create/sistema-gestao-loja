@@ -1,22 +1,3 @@
-DROP TABLE IF EXISTS itens_venda;
-DROP TABLE IF EXISTS pagamentos;
-DROP TABLE IF EXISTS vendas;
-DROP TABLE IF EXISTS financeiro;
-DROP TABLE IF EXISTS fornecedores_produtos;
-DROP TABLE IF EXISTS produto_tamanhos;
-DROP TABLE IF EXISTS produtos;
-DROP TABLE IF EXISTS fornecedores;
-DROP TABLE IF EXISTS clientes;
-DROP TABLE IF EXISTS usuarios_acesso;
-DROP TABLE IF EXISTS categorias;
-DROP TABLE IF EXISTS estoque;
-DROP TABLE IF EXISTS loja;
-
-DROP DATABASE IF EXISTS loja;
-CREATE DATABASE loja;
-
-\c loja;
-
 CREATE TABLE loja (
   id_loja SERIAL PRIMARY KEY,
   nome VARCHAR(45) NOT NULL,
@@ -27,7 +8,6 @@ CREATE TABLE loja (
   data_criacao TIMESTAMP
 );
 
------------------------------------------------------------------------------------------------------
 CREATE TABLE estoque (
   id_estoque SERIAL PRIMARY KEY,
   id_loja INTEGER REFERENCES loja(id_loja)
@@ -45,11 +25,11 @@ CREATE TABLE produtos (
    id_categorias INTEGER REFERENCES categorias(id_categorias),
    codigo_p VARCHAR(20) UNIQUE NOT NULL,
    descricao TEXT,
-   nome VARCHAR(20) NOT NULL
+   nome VARCHAR(20) NOT NULL,
    preco_custo DECIMAL(10,2) NOT NULL,
    preco_venda DECIMAL(10,2) NOT NULL,
-   qtd int NOT NULL DEFAULT 0,
-   estoque_min int NOT NULL DEFAULT 0,
+   qtd INT NOT NULL DEFAULT 0,
+   estoque_min INT NOT NULL DEFAULT 0,
    data_criacao TIMESTAMP NOT NULL
 );
 
@@ -59,8 +39,6 @@ CREATE TABLE produto_tamanhos (
     tamanho VARCHAR(10),
     quantidade INTEGER NOT NULL
 );
-
------------------------------------------------------------------------------------------------------
 
 CREATE TABLE usuarios_acesso (
   id_usuarios SERIAL PRIMARY KEY,
@@ -90,13 +68,11 @@ CREATE TABLE fornecedores (
     endereco TEXT,
     data_cadastro TIMESTAMP
 );
-    
------------------------------------------------------------------------------------------------------
 
 CREATE TABLE fornecedores_produtos (
   id_fornecedor INTEGER REFERENCES fornecedores(id_fornecedor),
   id_produto INTEGER REFERENCES produtos(id_produto),
-  PRIMARY KEY  (id_fornecedor, id_produto)
+  PRIMARY KEY (id_fornecedor, id_produto)
 );
 
 CREATE TABLE financeiro (
@@ -108,27 +84,27 @@ CREATE TABLE vendas (
    id_venda SERIAL PRIMARY KEY,
    id_financeiro INTEGER REFERENCES financeiro(id_financeiro),
    id_cliente INTEGER REFERENCES clientes(id_cliente),
-   valor_total DECIMAL (10,2) NOT NULL,
+   valor_total DECIMAL(10,2) NOT NULL,
    forma_pagamento VARCHAR(30),
-   parcelas INT ,
-   data_venda TIMESTAMP NOT NULL 
+   parcelas INT,
+   data_venda TIMESTAMP NOT NULL
 );
 
 CREATE TABLE pagamentos (
   id_pagamentos SERIAL PRIMARY KEY,
-  id_vendas INTEGER REFERENCES vendas(id_loja),
+  id_vendas INTEGER REFERENCES vendas(id_venda),
   cod_pagamento INTEGER NOT NULL,
   descricao TEXT,
-  contato VARCHAR(10,2) NOT NULL,
+  contato VARCHAR(10) NOT NULL,
   data_paga TIMESTAMP,
   valor DECIMAL(10,2) NOT NULL
 );
 
 CREATE TABLE itens_venda (
    id_item SERIAL PRIMARY KEY,
-    id_venda INTEGER REFERENCES vendas(id_venda),
-    id_produto INTEGER REFERENCES produtos(id_produto),
-    id_tamanho INTEGER REFERENCES produto_tamanhos(id_tamanho),
-   quantidade int NOT NULL,
-   preco_unitario DECIMAL(10,00) NOT NULL ,
+   id_venda INTEGER REFERENCES vendas(id_venda),
+   id_produto INTEGER REFERENCES produtos(id_produto),
+   id_tamanho INTEGER REFERENCES produto_tamanhos(id_tamanho),
+   quantidade INT NOT NULL,
+   preco_unitario DECIMAL(10,2) NOT NULL
 );
