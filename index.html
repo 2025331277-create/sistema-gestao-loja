@@ -4,30 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login | Sistema de Gestão de loja</title>
+    <title>Login | Sistema de Gestão de Loja</title>
+    <link rel="stylesheet" href="css/modern-normalize.css">
     <link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
     <main class="login-container">
-        <header class="login-header">
-            <h1>Sistema de Gestão de loja</h1>
-            <p>Senha de acesso ao Sistema :</p>
-        </header>
+        <h1>Sistema de Gestão de Loja</h1>
+
         <form id="form-login">
             <div class="campo">
-                <label for="email">E-mail</label>
-                <input type="email" id="email" name="email" placeholder="Digite seu e-mail" required>
+                <input type="email" id="email" placeholder="Digite seu e-mail" required>
             </div>
+
             <div class="campo">
-                <label for="senha">Senha</label>
-                <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                <input type="password" id="senha" placeholder="Digite sua senha" required>
             </div>
+
             <button type="submit">Entrar</button>
-            <p id="mensagem" role="alert"></p>
         </form>
     </main>
-    <script src="js/login.js"></script>
+
+    <script type="module" src="js/login.js"></script>
 </body>
 
 </html>
