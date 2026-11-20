@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estoque | Sistema de Gestão de Loja</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-normalize/modern-normalize.css"
+    />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <app-header></app-header>
+
+    <header>
+      <h1>Sistema de Gestão de Loja - Estoque</h1>
+    </header>
+
+    <app-nav></app-nav>
+
+    <nav>
+      <a href="inicio.html">Início</a>
+      <a href="estoque.html">Estoque</a>
+      <a href="financeiro.html">Financeiro</a>
+      <a href="clientes.html">Clientes</a>
+      <a href="fornecedores.html">Fornecedores</a>
+      <a href="config.html">Configurações</a>
+    </nav>
+
+    <main>
+      <div class="p_estoque">
+        <a href="estoque.html">Consulta</a>
+        <a href="create.html">Adicionar</a>
+        <a href="delete.html">Deletar</a>
+        <a href="update.html">Editar</a>
+      </div>
+
+      <h2>Produtos Cadastrados</h2>
+
+      <button id="btn-read">Consultar Produtos</button>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Código</th>
+            <th>Preço</th>
+            <th>Quantidade</th>
+          </tr>
+        </thead>
+
+        <tbody id="lista-produtos"></tbody>
+      </table>
+    </main>
+
+    <app-footer></app-footer>
+
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>
