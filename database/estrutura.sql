@@ -31,7 +31,7 @@ CREATE TABLE produtos (
     preco_venda DECIMAL(10,2) NOT NULL,
     qtd INT NOT NULL DEFAULT 0,
     estoque_min INT NOT NULL DEFAULT 0,
-    data_criacao TIMESTAMP NOT NULL
+    data_criacao TIME NOT NULL
 );
 
 CREATE TABLE produto_tamanhos (

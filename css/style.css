@@ -45,13 +45,32 @@ footer {
   border-radius: 4px;
 }
 table {
-    width: 90%;
-    margin: 2px auto;
-    border-collapse: collapse;
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th, td {
-    padding: 12px;
-    text-align: center;
-    border-bottom: 1px solid #000000;
+  border: 1px solid var(--cinza-escuro);
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: var(--cinza-escuro);
+  color: var(--branco);
+}
+
+td {
+  color: var(--preto);
+}
+label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--cinza-escuro);
+}
+
+input, select, textarea {
+  padding: 8px;
+  border: 1px solid var(--cinza-escuro);
+  border-radius: 4px;
 }
