@@ -44,3 +44,14 @@ footer {
   color: var(--branco);
   border-radius: 4px;
 }
+table {
+    width: 90%;
+    margin: 2px auto;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #000000;
+}
