@@ -5,18 +5,23 @@ const supabase = createClient(
     'sb_publishable_ScRr0vEWNUa6861mQg8lsg_wsj_FRxv'
 );
 
-document.getElementById("form-login").addEventListener("submit", async function(event) {
+const formulario = document.getElementById("form-login");
+
+formulario.addEventListener("submit", async function(event) {
     event.preventDefault();
 
+    const email = document.getElementById("email").value;
+    const senha = document.getElementById("senha").value;
+
     const { error } = await supabase.auth.signInWithPassword({
-        email: document.getElementById("email").value,
-        password: document.getElementById("senha").value
+        email: email,
+        password: senha
     });
 
     if (error) {
-        alert("Email ou senha incorretos");
+        alert("E-mail ou senha incorretos.");
         return;
     }
 
-    window.location.href = "../pages/inicio.html";
+    window.location.href = "pages/inicio.html";
 });

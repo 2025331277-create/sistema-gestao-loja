@@ -1,24 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login | Sistema de Gestão de Loja</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <h1>Sistema de Gestão de Loja</h1>
 
     <form id="form-login">
+      <input type="email" id="email" placeholder="Digite seu e-mail" required />
 
-        <input type="email" id="email" placeholder="Digite seu e-mail" required>
+      <input
+        type="password"
+        id="senha"
+        placeholder="Digite sua senha"
+        required
+      />
 
-        <input type="password" id="senha" placeholder="Digite sua senha" required>
-
-        <button type="submit">Entrar</button>
-
+      <button type="submit">Entrar</button>
     </form>
 
     <p id="mensagem"></p>
@@ -26,7 +27,5 @@
     <p>Não possui uma conta? <a href="cadastro.html">Cadastre-se</a></p>
 
     <script type="module" src="js/login.js"></script>
-
-</body>
-
+  </body>
 </html>
