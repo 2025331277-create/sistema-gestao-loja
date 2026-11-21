@@ -74,3 +74,12 @@ input, select, textarea {
   border: 1px solid var(--cinza-escuro);
   border-radius: 4px;
 }
+.resumo{
+  display: flex;
+  gap: 10px;
+  margin: 12px 0;
+}
+.info{
+  border: 1px solid black;
+  padding: 10px;
+}
