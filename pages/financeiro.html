@@ -26,9 +26,55 @@
       <a href="config.html">Configurações</a>
     </nav>
     <main>
-      <h2>financeiro</h2>
+      <h2>Controle Financeiro</h2>
 
-      <p>Bem-vindo ao Sistema de Gestão de Loja!</p>
+      <div class="resumo">
+        <div class="info">
+          <strong>Recebido</strong>
+          <p id="total-recebido">R$ 0,00</p>
+        </div>
+
+        <div class="info">
+          <strong>A Receber</strong>
+          <p id="total-pendente">R$ 0,00</p>
+        </div>
+
+        <div class="info">
+          <strong>Total de Vendas</strong>
+          <p id="total-vendas">0</p>
+        </div>
+      </div>
+
+      <h3>Vendas</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Valor</th>
+            <th>Pagamento</th>
+            <th>Parcelas</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody id="lista-vendas"></tbody>
+      </table>
+
+      <h3>Pagamentos</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Código</th>
+            <th>Valor</th>
+            <th>Contato</th>
+            <th>Data</th>
+          </tr>
+        </thead>
+        <tbody id="lista-pagamentos"></tbody>
+      </table>
     </main>
 
     <footer>
