@@ -1,8 +1,24 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 body {
   margin: 0 0 0 180px;
   font-family: "Roboto", sans-serif;
+  color: var(--preto);
+}
+
+header, main, footer {
+  padding: 15px 30px;
+}
+
+h1, h2, h3 {
+  margin: 0 0 12px;
+}
+
+hr {
+  margin: 24px 0;
+  border: 0;
+  border-top: 1px solid var(--cinza-escuro);
 }
 
 nav {
@@ -11,25 +27,42 @@ nav {
   left: 0;
   width: 180px;
   height: 100vh;
-  background: var(--cinza-escuro);
   padding: 25px 20px;
+  box-sizing: border-box;
+  background: var(--cinza-escuro);
 }
 
 nav a {
   display: block;
-  color: var(--branco);
   margin-bottom: 24px;
-}
-
-nav a,
-.p_estoque a {
+  color: var(--branco);
   text-decoration: none;
 }
 
-header,
-main,
+nav a.ativo {
+  font-weight: 700;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--cinza-escuro);
+}
+
+header h1 {
+  margin: 0;
+}
+
+#info-usuario {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 footer {
-  padding: 15px 30px;
+  border-top: 1px solid var(--cinza-escuro);
+  text-align: center;
 }
 
 .p_estoque {
@@ -43,26 +76,39 @@ footer {
   background: var(--preto);
   color: var(--branco);
   border-radius: 4px;
+  text-decoration: none;
 }
+
 table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 24px;
 }
 
 th, td {
-  border: 1px solid var(--cinza-escuro);
   padding: 10px;
+  border: 1px solid var(--cinza-escuro);
   text-align: left;
 }
 
 th {
-  background-color: var(--cinza-escuro);
+  background: var(--cinza-escuro);
   color: var(--branco);
 }
 
 td {
   color: var(--preto);
 }
+
+tbody tr:nth-child(even) {
+  background: var(--cinza-claro);
+}
+
+form {
+  max-width: 400px;
+  margin-bottom: 24px;
+}
+
 label {
   display: block;
   margin-bottom: 5px;
@@ -73,13 +119,73 @@ input, select, textarea {
   padding: 8px;
   border: 1px solid var(--cinza-escuro);
   border-radius: 4px;
+  font-family: inherit;
 }
-.resumo{
+
+form input, form select, form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+input[type="search"] {
+  margin-bottom: 12px;
+}
+
+button {
+  padding: 8px 14px;
+  background: var(--preto);
+  color: var(--branco);
+  border: 0;
+  border-radius: 4px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--cinza-escuro);
+}
+
+td button {
+  padding: 4px 10px;
+}
+
+.resumo {
   display: flex;
   gap: 10px;
   margin: 12px 0;
 }
-.info{
-  border: 1px solid black;
+
+.info {
+  min-width: 150px;
   padding: 10px;
+  border: 1px solid var(--preto);
+}
+
+.info p {
+  margin: 6px 0 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+body.login {
+  margin: 0;
+  padding: 40px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+body.login h1 {
+  text-align: center;
+}
+
+body.login form, body.login main {
+  width: 100%;
+  max-width: 400px;
+}
+
+body.login main {
+  padding: 0;
 }

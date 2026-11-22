@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clientes | Sistema de Gestão de Loja</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-normalize/modern-normalize.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <app-header titulo="Clientes"></app-header>
+    <app-nav></app-nav>
+
+    <main>
+      <h2>Clientes</h2>
+
+      <input type="search" id="busca-clientes" placeholder="Pesquisar cliente" />
+
+      <form id="form-cliente">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" maxlength="100" required />
+
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" maxlength="14" required />
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" maxlength="20" />
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" maxlength="100" />
+
+        <button type="submit">Cadastrar Cliente</button>
+      </form>
+
+      <h3>Clientes Cadastrados</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Data de cadastro</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-clientes"></tbody>
+      </table>
+    </main>
+
+    <app-footer></app-footer>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

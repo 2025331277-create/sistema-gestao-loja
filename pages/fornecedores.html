@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fornecedores | Sistema de Gestão de Loja</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-normalize/modern-normalize.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <app-header titulo="Fornecedores"></app-header>
+    <app-nav></app-nav>
+
+    <main>
+      <h2>Fornecedores</h2>
+
+      <input type="search" id="busca-fornecedores" placeholder="Pesquisar fornecedor" />
+
+      <form id="form-fornecedor">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" maxlength="100" required />
+
+        <label for="cnpj">CNPJ:</label>
+        <input type="text" id="cnpj" maxlength="14" />
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" maxlength="20" />
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" maxlength="100" />
+
+        <label for="endereco">Endereço:</label>
+        <textarea id="endereco"></textarea>
+
+        <button type="submit">Cadastrar Fornecedor</button>
+      </form>
+
+      <h3>Fornecedores Cadastrados</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>CNPJ</th>
+            <th>Telefone</th>
+            <th>E-mail</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-fornecedores"></tbody>
+      </table>
+
+      <h3>Vincular Produto</h3>
+
+      <form id="form-fornecedor-produto">
+        <label for="fornecedor">Fornecedor:</label>
+        <select id="fornecedor" required>
+          <option value="">Selecione um fornecedor</option>
+        </select>
+
+        <label for="produto">Produto:</label>
+        <select id="produto" required>
+          <option value="">Selecione um produto</option>
+        </select>
+
+        <button type="submit">Vincular</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Fornecedor</th>
+            <th>Produto</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-fornecedor-produto"></tbody>
+      </table>
+    </main>
+
+    <app-footer></app-footer>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

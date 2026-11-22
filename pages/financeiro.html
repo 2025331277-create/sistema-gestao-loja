@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financeiro | Sistema de Gestão de Loja</title>
+    <link rel="stylesheet" href="https://unpkg.com/modern-normalize/modern-normalize.css" />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <app-header titulo="Financeiro"></app-header>
+    <app-nav></app-nav>
+
+    <main>
+      <h2>Financeiro</h2>
+
+      <div class="resumo">
+        <div class="info">
+          <strong>Recebido</strong>
+          <p id="total-recebido">R$ 0,00</p>
+        </div>
+
+        <div class="info">
+          <strong>A Receber</strong>
+          <p id="total-pendente">R$ 0,00</p>
+        </div>
+
+        <div class="info">
+          <strong>Vendas</strong>
+          <p id="total-vendas">0</p>
+        </div>
+      </div>
+
+      <h3>Novo Pagamento</h3>
+
+      <form id="form-pagamento">
+        <label for="venda">Venda:</label>
+        <select id="venda" required>
+          <option value="">Selecione uma venda</option>
+        </select>
+
+        <label for="codigo">Código:</label>
+        <input type="number" id="codigo" required />
+
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" min="0" step="0.01" required />
+
+        <label for="contato">Contato:</label>
+        <input type="text" id="contato" maxlength="20" required />
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao"></textarea>
+
+        <button type="submit">Cadastrar Pagamento</button>
+      </form>
+
+      <input type="search" id="busca-pagamentos" placeholder="Pesquisar pagamento" />
+
+      <h3>Pagamentos</h3>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Valor</th>
+            <th>Contato</th>
+            <th>Descrição</th>
+            <th>Data paga</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-pagamentos"></tbody>
+      </table>
+
+      <h3>Vendas</h3>
+
+      <input type="search" id="busca-vendas" placeholder="Pesquisar venda" />
+
+      <table>
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Valor</th>
+            <th>Pagamento</th>
+            <th>Parcelas</th>
+            <th>Data</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-vendas"></tbody>
+      </table>
+    </main>
+
+    <app-footer></app-footer>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

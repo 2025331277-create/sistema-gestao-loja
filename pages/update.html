@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="../css/style.css" />
   </head>
   <body>
-    <app-header></app-header>
+    <app-header titulo="Alterar Produto"></app-header>
     <app-nav></app-nav>
 
     <main>
@@ -31,7 +31,15 @@
         <input type="text" id="nome" required />
 
         <label>Código:</label>
-        <input type="text" id="codigo_p" required />
+        <input type="text" id="codigo_p" maxlength="20" required />
+
+        <label for="id_categorias">Categoria:</label>
+        <select id="id_categorias" required>
+          <option value="">Selecione uma categoria</option>
+        </select>
+
+        <label>Descrição:</label>
+        <textarea id="descricao"></textarea>
 
         <label>Preço de custo:</label>
         <input type="number" id="preco_custo" step="0.01" required />
@@ -42,8 +50,44 @@
         <label>Quantidade:</label>
         <input type="number" id="qtd" required />
 
+        <label>Estoque mínimo:</label>
+        <input type="number" id="estoque_min" required />
+
         <button type="submit">Salvar Alterações</button>
       </form>
+
+      <hr />
+
+      <h3>Tamanhos</h3>
+
+      <form id="form-tamanho">
+        <input type="hidden" id="id_produto_tamanho" />
+
+        <label for="tamanho">Tamanho:</label>
+        <input type="text" id="tamanho" maxlength="10" />
+
+        <label for="quantidade_tamanho">Quantidade:</label>
+        <input
+          type="number"
+          id="quantidade_tamanho"
+          min="0"
+          step="1"
+          required
+        />
+
+        <button type="submit">Cadastrar Tamanho</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Tamanho</th>
+            <th>Quantidade</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-tamanhos"></tbody>
+      </table>
     </main>
 
     <app-footer></app-footer>

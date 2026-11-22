@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Início | Sistema de Gestão de Loja</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/modern-normalize/modern-normalize.css"
+    />
+    <link rel="stylesheet" href="../css/variables.css" />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+
+  <body>
+    <app-header titulo="Início"></app-header>
+    <app-nav></app-nav>
+
+    <main>
+      <h2>Resumo do Negócio</h2>
+
+      <div class="resumo">
+        <div class="info">
+          <strong>Dinheiro em Caixa</strong>
+          <p id="total-caixa">R$ 0,00</p>
+        </div>
+
+        <div class="info">
+          <strong>Dinheiro na Rua</strong>
+          <p id="total-rua">R$ 0,00</p>
+        </div>
+
+        <div class="info">
+          <strong>Produtos no Estoque</strong>
+          <p id="total-produtos">0</p>
+        </div>
+
+        <div class="info">
+          <strong>Capital em Estoque</strong>
+          <p id="valor-estoque">R$ 0,00</p>
+        </div>
+      </div>
+    </main>
+
+    <app-footer></app-footer>
+    <script type="module" src="../js/main.js"></script>
+  </body>
+</html>

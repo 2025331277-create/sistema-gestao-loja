@@ -26,12 +26,12 @@
 
       <h2>Produtos Cadastrados</h2>
 
-      <button id="btn-read">Consultar Produtos</button>
+      <input type="search" id="busca-produtos" placeholder="Pesquisar produto" />
+      <button id="btn-read" type="button">Consultar Produtos</button>
 
       <table>
         <thead>
           <tr>
-            <th>ID</th>
             <th>Nome</th>
             <th>Código</th>
             <th>Categoria</th>
@@ -44,6 +44,35 @@
         </thead>
 
         <tbody id="lista-produtos"></tbody>
+      </table>
+
+      <hr />
+
+      <h2>Categorias</h2>
+
+      <form id="form-categoria">
+        <label for="nome-categoria">Nome:</label>
+        <input type="text" id="nome-categoria" maxlength="30" required />
+
+        <label for="descricao-categoria">Descrição:</label>
+        <textarea id="descricao-categoria"></textarea>
+
+        <button type="submit">Cadastrar Categoria</button>
+      </form>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Descrição</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista-categorias">
+          <tr>
+            <td colspan="3">Nenhuma categoria cadastrada.</td>
+          </tr>
+        </tbody>
       </table>
     </main>
 
